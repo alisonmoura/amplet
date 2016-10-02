@@ -9,12 +9,10 @@ public class Launcher {
         JFrame frame = new JFrame("Projeto Amplet");
         frame.setSize(new Dimension(500,500));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.LINE_AXIS));
 
-        Box box = Box.createVerticalBox();
         JButton btn1 = new JButton("Clique-me");
-        box.add(btn1);
-
-        frame.add(box, BorderLayout.CENTER);
+        frame.getContentPane().add(btn1);
 
         frame.setVisible(true);
     }
