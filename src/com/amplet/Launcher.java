@@ -1,7 +1,10 @@
 package com.amplet;
 
+import javafx.scene.input.Mnemonic;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Launcher {
     /**
@@ -16,18 +19,46 @@ public class Launcher {
         frame.setSize(new Dimension(500,500));
         // Faz com que, ao fechar a interface gráfica, ele também feche a aplicação.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         // Cria uma istância de JPnael que servirá como "painel de conteúdos" da interface gráfica.
         JPanel contentPane = new JPanel(new BorderLayout());
+
         // Cria um botão com o texto "Clique-me".
         JButton btn1 = new JButton("Clique-me");
+
         // Adiciona o botão btn1 ao contentPane com um alinhamento centralizado.
         contentPane.add(btn1, BorderLayout.CENTER);
+        // Adiciona a instância de JMenuBar retornada pelo método getMenBar.
+        frame.setJMenuBar(getMenuBar());
         // Faz com que o contentPane seja o "painel de conteúdo" do container "raiz", o jframe.
         frame.setContentPane(contentPane);
         // Deixa o botão azul e sem bordas
         setBotaoAzulSemBordas(btn1);
         // Faz com que o container "raiz" seja vizível como interface gráfica.
         frame.setVisible(true);
+    }
+
+    /**
+     * Método retorna uma instância de JMenuBar já configurada com seus respectivos menus.
+     * @return instância de JMenuBar
+     */
+    private static JMenuBar getMenuBar(){
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menuConfiguracoes = new JMenu("Configurações");
+        menuConfiguracoes.add(novoMenuItem("Configuar tema"));
+        menuConfiguracoes.add(novoMenuItem("Configuar janelas"));
+        menuConfiguracoes.add(novoMenuItem("Configuar usuários"));
+        menuBar.add(menuConfiguracoes);
+        return menuBar;
+    }
+
+    /**
+     * Método retorna uma instância de JMenuItem configurado com sua descrição.
+     * @param descricao descrição do item de menu
+     * @return instância de JMenuItem
+     */
+    private static JMenuItem novoMenuItem(String descricao){
+        return new JMenuItem(descricao);
     }
 
     /**
